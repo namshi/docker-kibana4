@@ -39,3 +39,7 @@ web:
   environment:
     elasticsearch_host: https://example.org:9200
 ```
+
+## Credits
+
+All work from [Ayham](https://github.com/ayhamalzoubi) ;-)
