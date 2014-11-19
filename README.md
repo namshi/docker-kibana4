@@ -28,7 +28,12 @@ just specify it through an environment variable:
 ```
 docker run -ti -p 5601:5601 -e elasticsearch_host=https://example.com:9200/ namshi/docker-kibana4
 ```
+Also if you don't need to expose the elasticsearch host, you can set it up as an env variable and mount it to the settings folder.
 
+For example
+```
+docker run -ti -p 5601:5601 -v /<your file which have the details of elasticsearch_host>/:/settings/setup-env.sh namshi/docker-kibana4
+```
 or, alternatively, configure it in the fig file:
 
 ```

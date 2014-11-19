@@ -6,6 +6,8 @@
 # Pull base image.
 FROM dockerfile/nginx
  
+MAINTAINER Ayham Alzoubi "ayham.a.alzoubi@gmail.com"
+
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list
 RUN echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
@@ -22,7 +24,9 @@ RUN \
   tar xvzf kibana-4.0.0-BETA2.tar.gz && \
   rm -f kibana-4.0.0-BETA2.tar.gz && \
   mv /tmp/kibana-4.0.0-BETA2 /kibana
- 
+
+# Create Config Directory
+RUN mkdir -p /settings/ && touch /settings/setup-env.sh
  
 COPY . /src
  
@@ -34,4 +38,4 @@ RUN cd /src && chmod +x run.sh
  
 EXPOSE 5601
  
-CMD /src/run.sh && nginx && /kibana/bin/kibana
+CMD . /settings/setup-env.sh && . /src/run.sh && nginx && /kibana/bin/kibana
