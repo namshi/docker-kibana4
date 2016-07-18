@@ -1,5 +1,4 @@
 kibana:
   notify:
   - github
-  - emailSes
   registry: namshi.net
